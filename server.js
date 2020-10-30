@@ -11,17 +11,8 @@ mongoose.connect('mongodb://localhost:27017/nodeapi', {
     useUnifiedTopology: true,
 });
 requireDir('./src/models');
-const Product = mongoose.model('Product');
 
-// Primeira rota
-app.get('/', (req, res) => {
-        Product.create({
-            title: 'React Native',
-            description: 'Build native apps with react',
-            url: 'https://github.com/facebook/react-native'
-        });
-    
-    return res.send('Hello world');
-});
+// Rotas
+app.use('/api', require('./src/routes'));
 
 app.listen(3001);
